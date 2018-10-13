@@ -34,6 +34,13 @@
           <li class="<%= 'active' if params[:controller] == 'posts' %>">
             <%= link_to 'Posts', posts_path %>
           </li>
+          <li class="<%= 'active' if params[:controller] == 'admins' %>">
+            <% if current_admin %>
+              <%= link_to 'Sign Out', destroy_admin_session_path, method: :delete  %>
+            <% else %>
+              <%= link_to 'Admin Sign In', new_admin_session_path %>
+            <% end %>
+          </li>
         </ul>
       </div>
     </div>

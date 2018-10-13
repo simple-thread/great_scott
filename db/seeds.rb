@@ -3,3 +3,7 @@ post = Post.create!(
   body: 'My blog body',
   published: true
 )
+
+admin = Admin.new(email: 'admin@account.com')
+admin.password = 'Password123!'
+admin.save!
