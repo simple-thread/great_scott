@@ -1,7 +1,9 @@
 <div class="page-header">
-  <%= link_to new_post_path, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Post
+  <% if current_admin %>
+    <%= link_to new_post_path, class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      New Post
+    <% end %>
   <% end %>
   <h1>Listing posts</h1>
 </div>
@@ -20,22 +22,24 @@
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
-            <th>Title</th>
-            <th>Published</th>
-            <th></th>
-        <th></th>
-        <th></th>
+        <th>Title</th>
+        <% if current_admin %>
+          <th>Published</th>
+          <th></th>
+          <th></th>
+        <% end %>
       </tr>
     </thead>
 
     <tbody>
       <% @posts.each do |post| %>
         <%= content_tag :tr, id: dom_id(post), class: dom_class(post) do %>
-                      <td><%= post.title %></td>
-                      <td><%= post.published %></td>
-                    <td><%= link_to 'Show', post %></td>
-          <td><%= link_to 'Edit', edit_post_path(post) %></td>
-          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to post.title, post %></td>
+          <% if current_admin %>
+            <td><%= post.published %></td>
+            <td><%= link_to 'Edit', edit_post_path(post) %></td>
+            <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         <% end %>
       <% end %>
     </tbody>

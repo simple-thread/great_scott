@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :require_admin, only: [:new, :edit, :create, :update, :destroy]
 
   # GET /posts
   def index
@@ -57,5 +58,9 @@ class PostsController < ApplicationController
 
   def search_param
     params[:search]
+  end
+
+  def require_admin
+    redirect_to posts_path, notice: 'Not authorized.' unless current_admin
   end
 end
