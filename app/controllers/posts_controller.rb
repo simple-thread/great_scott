@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = Post.search(search_param).default_order
+    @posts = @posts.select(&:published?) unless current_admin
   end
 
   # GET /posts/1
