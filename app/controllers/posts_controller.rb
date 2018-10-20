@@ -5,7 +5,9 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = Post.search(search_param).default_order
-    @posts = @posts.select(&:published?) unless current_admin
+    @posts = @posts.select do |post|
+      (post.author == selected_author || any_author?) && (post.published? || current_admin)
+    end
   end
 
   # GET /posts/1
@@ -22,8 +24,10 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = Post.new(post_params)
+    @post.author = current_admin
 
     if @post.save
+      current_admin.update!(author: true)
       redirect_to @post, notice: 'Post was successfully created.'
     else
       render :new
@@ -59,6 +63,20 @@ class PostsController < ApplicationController
 
   def search_param
     params[:search]
+  end
+
+  def author_email_param
+    params[:author]
+  end
+
+  def selected_author
+    @selected_author ||= Admin.all.select do |admin|
+      Devise.secure_compare(admin.email, author_email_param)
+    end.first
+  end
+
+  def any_author?
+    author_email_param.blank?
   end
 
   def require_admin

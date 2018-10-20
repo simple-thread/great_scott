@@ -45,7 +45,7 @@ class Request
     results = Hash.new { |h, k| h[k] = [] }
 
     num_trials.times do |i|
-      puts "Trial # #{i+1}"
+      puts "Trial #{i+1} of #{num_trials}"
       search_terms.each_slice(CONCURRENT_THREADS) do |slice|
         threads = threaded_benchmark_get(slice)
         threads.each do |term, thread|

@@ -7,7 +7,7 @@ results = Hash.new { |h, k| h[k] = [] }
 request = Request.new
 
 NUMBER_OF_TRIALS.times do |i|
-  puts "Trial # #{i+1}"
+  puts "Trial #{i+1} of #{NUMBER_OF_TRIALS}"
   SEARCH_TERMS.each do |term|
     results[term] << request.benchmark_get(term)
   end
