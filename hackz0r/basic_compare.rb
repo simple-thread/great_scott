@@ -18,7 +18,7 @@ results.each do |name, values|
   puts "Trials: #{values.length}"
   puts "Mean: #{values.mean}"
   puts "Standard Deviation: #{values.standard_deviation}"
-  # puts "Confidence Interval 95%: #{values.confidence_interval_95}"
+  puts "Confidence Interval 95%: #{values.confidence_interval_95}"
   puts "Confidence Interval 99%: #{values.confidence_interval_99}"
   puts 'Raw Values: '
   puts values.to_s

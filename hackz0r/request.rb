@@ -4,7 +4,6 @@ require 'httparty'
 class Request
   URL = 'http://localhost:3000/posts?search='
 
-  CONCURRENT_THREADS = 4
   ENCODED_QUESTION_MARK = '%3F'
   ENCODED_SPACE = '+'
 
@@ -30,27 +29,13 @@ class Request
     bm * 1000
   end
 
-  def threaded_benchmark_get(search_terms)
-    search_terms.map do |term|
-      [
-        term,
-        Thread.new do
-          benchmark_get(term)
-        end
-      ]
-    end.to_h
-  end
-
   def trials(search_terms, num_trials)
     results = Hash.new { |h, k| h[k] = [] }
 
     num_trials.times do |i|
-      puts "Trial #{i+1} of #{num_trials}"
-      search_terms.each_slice(CONCURRENT_THREADS) do |slice|
-        threads = threaded_benchmark_get(slice)
-        threads.each do |term, thread|
-          results[term] << thread.value
-        end
+      puts "Trial #{i + 1} of #{num_trials}"
+      search_terms.each do |term|
+        results[term] << benchmark_get(term)
       end
     end
 
@@ -59,7 +44,6 @@ class Request
 
   private
 
-  # TODO: Space seems to be working in the UI?  Why does it not work here
   def encode(term)
     term.gsub('?', ENCODED_QUESTION_MARK).gsub(' ', ENCODED_SPACE)
   end

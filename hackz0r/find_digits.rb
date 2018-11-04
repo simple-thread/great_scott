@@ -1,8 +1,8 @@
 require './extend_enum.rb'
 require './request.rb'
 
-NUMBER_OF_TRIALS = 100
-DIGIT_LENGTH_RANGE = (39..50)
+NUMBER_OF_TRIALS = 10
+DIGIT_LENGTH_RANGE = (10..70)
 request = Request.new
 
 SEARCH_TERMS = DIGIT_LENGTH_RANGE.map do |i|

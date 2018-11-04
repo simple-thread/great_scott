@@ -6,10 +6,10 @@ require './request.rb'
 # Use asterisk (*) for starting point
 STARTING_SECRET = '*???????????????????????????????????????????'
 
+CHARS_TO_TEST = ('a'..'z').to_a + [' ']
 NUMBER_OF_TRIALS = 10
-CHARS_TO_TEST = ('a'..'z').to_a
-ACCEPTABLE_DELTA_MIN = 9
-ACCEPTABLE_CV_MAX = 50
+ACCEPTABLE_DELTA_MIN = 8
+ACCEPTABLE_CV_MAX = 20
 
 class Engine
   def initialize(secret, results, index)
@@ -19,25 +19,25 @@ class Engine
   end
 
   def compute_new_secret
-      puts "Delta: #{delta}"
-      puts "Coefficient Variation: #{coefficient_variation}"
+    puts "Delta: #{delta}"
+    puts "Coefficient Variation: #{coefficient_variation}"
 
-      if coefficient_variation > ACCEPTABLE_CV_MAX
-        # The winner's data has big outliers.  Let's recalculate this index
-        puts 'CV too low.  Retrying...'
-        return @secret
-      end
+    if coefficient_variation > ACCEPTABLE_CV_MAX
+      # The winner's data has big outliers.  Let's recalculate this index
+      puts 'CV too low.  Retrying...'
+      return @secret
+    end
 
-      @secret[@index] = if delta > ACCEPTABLE_DELTA_MIN
+    @secret[@index] = if delta > ACCEPTABLE_DELTA_MIN
                         winning_term[@index]
                       else
                         # There was no clear winner so leave as wildcard
                         '?'
                       end
 
-      new_index = @index + 1
-      @secret[new_index] = '*' unless new_index == @secret.length
-      @secret
+    new_index = @index + 1
+    @secret[new_index] = '*' unless new_index == @secret.length
+    @secret
   end
 
   private
@@ -69,7 +69,6 @@ class Engine
       values
     end.flatten.mean
   end
-
 end
 
 class Crack
@@ -80,7 +79,7 @@ class Crack
   end
 
   def run
-    until !@secret.include? '*'
+    while @secret.include? '*'
       puts "Current Secret: #{@secret}"
 
       @index = @secret.index('*')
@@ -93,7 +92,6 @@ class Crack
     puts 'The cracked secret is...'
     puts @secret
   end
-
 
   private
 
