@@ -14,8 +14,10 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
+/hackz0r/tmp/*
 !/log/.keep
 !/tmp/.keep
+/hackz0r/tmp/.keep
 
 # Ignore uploaded files in development
 /storage/*

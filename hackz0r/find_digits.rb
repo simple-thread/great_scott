@@ -1,7 +1,7 @@
 require './extend_enum.rb'
 require './request.rb'
 
-NUMBER_OF_TRIALS = 10
+NUMBER_OF_TRIALS = 50
 DIGIT_LENGTH_RANGE = (10..70)
 request = Request.new
 

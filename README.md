@@ -1,6 +1,10 @@
 # Great Scott
 
-A practical guide to timing attacks for the every day web dev
+A practical guide to timing attacks for the every day web dev.
+
+# Guide
+
+Read the full blog post that accompanies this repo here: 
 
 ### App Setup
 
@@ -22,3 +26,19 @@ Run server and access it on localhost:3000
 ```
 bundle exec rails s
 ```
+
+### Run Timing Attack Hacks
+
+```
+ruby hackz0r/basic_compare.rb
+```
+
+```
+ruby hackz0r/find_digits.rb
+```
+
+```
+ruby hackz0r/coup_de_grace.rb
+```
+
+Note these are setup around the demo data first seeded in `db:setup`.
