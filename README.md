@@ -2,32 +2,35 @@
 
 A practical guide to timing attacks for the every day web dev.
 
-# Guide
+## Guide
 
-Read the full blog post that accompanies this repo here: 
+Read the full blog post that accompanies this repo here:
 
-### App Setup
+## Setup
+
+```
+docker build -t great_scott .
+docker run -p 3000:3000 great_scott
+```
+Navigate to localhost:3000
+
+OR install dependencies directly...
 
 * Install ruby 2.5.1.  If using [rbenv](https://github.com/rbenv/rbenv) then `rbenv install 2.5.1`
 * Install [bundler](https://bundler.io/). `gem install bundler`
 * Install dependencies for this application: `bundle install`
-* Install Google Chrome which is used in the system tests
-
-
-### Run Local Server
-
-Create database and load demo data...
-```
-bundle exec rake db:drop db:create db:migrate db:setup
-```
-
-Run server and access it on localhost:3000
-
+* Run server and access it on localhost:3000
 ```
 bundle exec rails s
 ```
 
-### Run Timing Attack Hacks
+## Run Timing Attacks
+
+These scripts are setup around the starting seed data:
+
+```
+bundle exec rake db:drop db:create db:migrate db:setup
+```
 
 ```
 ruby hackz0r/basic_compare.rb
@@ -40,5 +43,3 @@ ruby hackz0r/find_digits.rb
 ```
 ruby hackz0r/coup_de_grace.rb
 ```
-
-Note these are setup around the demo data first seeded in `db:setup`.
