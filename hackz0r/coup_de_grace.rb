@@ -1,6 +1,6 @@
 require 'logger'
-require './extend_enum.rb'
-require './request.rb'
+require_relative 'extend_enum'
+require_relative 'request'
 
 # Use question mark for unknown
 # Use asterisk (*) for starting point

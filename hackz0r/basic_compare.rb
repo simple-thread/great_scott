@@ -1,5 +1,5 @@
-require './extend_enum.rb'
-require './request.rb'
+require_relative 'extend_enum'
+require_relative 'request'
 
 NUMBER_OF_TRIALS = 100
 SEARCH_TERMS = ['great', 'blake', 'future', 'past']

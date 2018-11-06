@@ -66,3 +66,6 @@ gem 'jquery-rails'
 gem 'annotate'
 gem 'rubocop'
 gem 'devise'
+
+# For hackz0r scripts
+gem 'httparty'
