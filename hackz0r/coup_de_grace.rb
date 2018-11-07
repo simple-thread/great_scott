@@ -11,6 +11,10 @@ NUMBER_OF_TRIALS = 10
 ACCEPTABLE_DELTA_MIN = 8
 ACCEPTABLE_CV_MAX = 20
 
+puts "NUMBER_OF_TRIALS: #{NUMBER_OF_TRIALS}"
+puts "ACCEPTABLE_DELTA_MIN: #{ACCEPTABLE_DELTA_MIN}"
+puts "ACCEPTABLE_CV_MAX: #{ACCEPTABLE_CV_MAX}"
+
 class Engine
   def initialize(secret, results, index)
     @secret = secret

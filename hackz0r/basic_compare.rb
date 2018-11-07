@@ -3,6 +3,10 @@ require_relative 'request'
 
 NUMBER_OF_TRIALS = 100
 SEARCH_TERMS = ['great', 'blake', 'future', 'past']
+
+puts "NUMBER_OF_TRIALS: #{NUMBER_OF_TRIALS}"
+puts "SEARCH_TERMS: #{SEARCH_TERMS}"
+
 results = Hash.new { |h, k| h[k] = [] }
 request = Request.new
 

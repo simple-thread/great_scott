@@ -3,13 +3,15 @@ require_relative 'request'
 
 NUMBER_OF_TRIALS = 50
 DIGIT_LENGTH_RANGE = (10..70)
-request = Request.new
-
 SEARCH_TERMS = DIGIT_LENGTH_RANGE.map do |i|
   '?' * i
 end
 
+puts "NUMBER_OF_TRIALS: #{NUMBER_OF_TRIALS}"
+puts "DIGIT_LENGTH_RANGE: #{DIGIT_LENGTH_RANGE}"
+
 puts 'Running Trials...'
+request = Request.new
 results = request.trials(SEARCH_TERMS, NUMBER_OF_TRIALS)
 
 puts 'Exporting results to csv...'
