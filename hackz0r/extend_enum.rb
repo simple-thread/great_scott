@@ -1,21 +1,20 @@
 module Enumerable
-
   def sum
-    self.inject(0){|accum, i| accum + i }
+    inject(0) { |accum, i| accum + i }
   end
 
   def mean
-    self.sum/self.length.to_f
+    sum / length.to_f
   end
 
   def sample_variance
-    m = self.mean
-    sum = self.inject(0){|accum, i| accum +(i-m)**2 }
-    sum/(self.length - 1).to_f
+    m = mean
+    sum = inject(0) { |accum, i| accum + (i - m)**2 }
+    sum / (length - 1).to_f
   end
 
   def standard_deviation
-    return Math.sqrt(self.sample_variance)
+    Math.sqrt(sample_variance)
   end
 
   def confidence_interval_99
@@ -29,8 +28,8 @@ module Enumerable
   private
 
   def confidence_interval(confidence)
-    interval = t_value(confidence, self.length) * Math.sqrt(self.standard_deviation**2 / self.length)
-    [self.mean - interval, self.mean + interval]
+    interval = t_value(confidence, length) * Math.sqrt(standard_deviation**2 / length)
+    [mean - interval, mean + interval]
   end
 
   def t_value(confidence, size)
