@@ -10,9 +10,14 @@ Read the full blog post that accompanies this repo here:
 
 ```
 docker build -t great_scott .
-docker run -p 3000:3000 great_scott
+docker run -d -p 3000:3000 --name great_scott great_scott
+docker exec -i -t great_scott /bin/bash
+# Cleanup when done
+docker stop great_scott && docker rm great_scott
 ```
-Navigate to localhost:3000
+Access web server on localhost:3000
+
+---------------------------------------------------------------------------
 
 OR install dependencies directly...
 
@@ -33,13 +38,13 @@ bundle exec rake db:drop db:create db:migrate db:setup
 ```
 
 ```
-ruby hackz0r/basic_compare.rb
+bundle exec ruby hackz0r/basic_compare.rb
 ```
 
 ```
-ruby hackz0r/find_digits.rb
+bundle exec ruby hackz0r/find_digits.rb
 ```
 
 ```
-ruby hackz0r/coup_de_grace.rb
+bundle exec ruby hackz0r/coup_de_grace.rb
 ```
