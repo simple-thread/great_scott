@@ -22,17 +22,14 @@ class Engine
     puts "Delta: #{delta}"
     puts "Coefficient Variation: #{coefficient_variation}"
 
-    if coefficient_variation > ACCEPTABLE_CV_MAX
-      # The winner's data has big outliers.  Let's recalculate this index
-      puts 'CV too low.  Retrying...'
-      return @secret
-    end
-
-    @secret[@index] = if delta > ACCEPTABLE_DELTA_MIN
-                        winning_term[@index]
-                      else
-                        # There was no clear winner so leave as wildcard
+    @secret[@index] = if delta < ACCEPTABLE_DELTA_MIN
+                        puts 'Delta too low.  Leaving as wildcard...'
                         '?'
+                      elsif coefficient_variation > ACCEPTABLE_CV_MAX
+                        puts 'CV too high.  Leaving as wildcard...'
+                        '?'
+                      else
+                        winning_term[@index]
                       end
 
     new_index = @index + 1
