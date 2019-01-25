@@ -1,7 +1,7 @@
 require_relative 'extend_enum'
 require_relative 'request'
 
-NUMBER_OF_TRIALS = 50
+NUMBER_OF_TRIALS = 100
 DIGIT_LENGTH_RANGE = (10..70)
 SEARCH_TERMS = DIGIT_LENGTH_RANGE.map do |i|
   '?' * i
