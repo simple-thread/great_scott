@@ -29,6 +29,12 @@ OR install dependencies directly...
 bundle exec rails s
 ```
 
+###
+
+Credentials to sign in as admin:
+Username: admin@account.com
+Password: Password123!
+
 ## Run Timing Attacks
 
 These scripts are setup around the starting seed data:
