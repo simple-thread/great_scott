@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.search(search_param).default_order
+    @posts = Post.search_by_title(search_param).default_order
     @posts = @posts.select do |post|
       (post.author == selected_author || any_author?) && (post.published? || current_admin)
     end

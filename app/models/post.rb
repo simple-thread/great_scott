@@ -20,7 +20,7 @@ class Post < ApplicationRecord
 
   scope :default_order, -> { order(:title) }
   scope :published, -> { where(published: true) }
-  scope :search, ->(query) do
+  scope :search_by_title, ->(query) do
     if query.present?
       query = sanitize_sql_like(query)
       query = query.tr('?', '_').tr('*', '%')
