@@ -8,7 +8,7 @@
   <h1>Listing posts</h1>
 </div>
 
-<div class="row" style="padding-bottom: 20px">
+<div class="row" style="">
   <form action="/posts">
     <div class="col-sm-8">
       <input class="form-control" placeholder="Search" type="text" name="search" id="_posts_search" value="<%= params[:search] %>">
@@ -26,6 +26,17 @@
       <input type="submit" value="Search" class="btn btn-primary" data-disable-with="Search">
     </div>
 </form></div>
+
+<div class="row" style="padding-bottom: 20px">
+  <ul>
+    <li>
+      Use a question mark character '?' for single character wildcards.
+    </li>
+    <li>
+      Use asterisks '*' as a multiple character wildcard
+    </li>
+  </ul>
+</div>
 
 <h6>
   Total Posts Shown: <%= @posts.size %>
