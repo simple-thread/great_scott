@@ -46,7 +46,7 @@ module Enumerable
         2.68
       elsif size <= 100
         2.63
-      elsif size <= 500
+      else
         2.58
       end
     elsif confidence == 0.95
@@ -62,7 +62,7 @@ module Enumerable
         2.01
       elsif size <= 100
         1.98
-      elsif size <= 500
+      else
         1.96
       end
     else
