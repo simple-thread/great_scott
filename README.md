@@ -5,6 +5,7 @@ A practical guide to timing attacks for the every day web dev.
 ## Guide
 
 Read the full blog post that accompanies this repo here:
+https://www.simplethread.com/great-scott-timing-attack-demo/
 
 ## Setup
 
